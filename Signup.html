@@ -1,0 +1,37 @@
+<!--User goes to signup page and enters name and password.
+Store the username/password and generate a public/private key using phplibsec library 
+and store the intormation in a txt file users/passwords/public key/private key-->
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> 
+		<script src="phpseclib.zip"></script>
+	</head>
+
+	<body>
+		<form id="form" name="form">
+		    <label><b>Username</b></label>
+		    <input type="text" placeholder="Enter Username" name="user"/>
+
+		    <label><b>Password</b></label>
+		    <input type="password" placeholder="Enter Password" name="psw"/>
+		</form>
+		<button id="login" onclick="signUp">Sign Up</button>
+		<p></p>
+	<script>
+	var username = document.forms["form"]["user"].value;
+	var pass = document.forms["form"]["psw"].value;
+	$(document).ready(function(){
+		$('#login').click(function(){
+			$.ajax({
+				type:"POST",
+				url:"Signup.php",
+				success : 			
+			})
+		})
+	});
+	</script>
+
+	</body>
+
+
+</html>
