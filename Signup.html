@@ -23,16 +23,20 @@ and store the intormation in a txt file users/passwords/public key/private key--
 
 	$(document).ready(function(){
 
+		//when login button is clicked, get user data and post to Signup.php script
 	$('#login').click(function(){
+		//get user data from form
 	var username = document.forms["form"]["user"].value;
 	var pass = document.forms["form"]["psw"].value;
 	var allKeys;
 	var count = 0;
 
+	//create user JSON object
 	var user = {
 		name:username,
 		password:pass
 	}
+			//send, or post, data to Signup.php
 			$.ajax({
 				type:'POST',
 				url:"Signup.php",

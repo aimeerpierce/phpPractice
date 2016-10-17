@@ -29,6 +29,8 @@ On failure, ask the user to correct username/password-->
 				name:username,
 				password:pass
 			};
+
+			//post data to checkLogin.php
 			$.ajax({
 				type:'POST',
 				url:"checkLogin.php",
@@ -37,6 +39,7 @@ On failure, ask the user to correct username/password-->
 				success : function (data) {
 					console.log(data);
 					if(data.status != false){
+						//if checkLogin.php returns true, show post data
 						$('#posts').show();
 					} else {
 						console.log("username/password incorrect");
