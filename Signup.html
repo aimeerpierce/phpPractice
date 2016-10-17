@@ -4,30 +4,47 @@ and store the intormation in a txt file users/passwords/public key/private key--
 <html>
 	<head>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> 
-		<script src="phpseclib.zip"></script>
+		<!--script src="phpseclib.txt"></script-->
+
 	</head>
 
 	<body>
 		<form id="form" name="form">
+		<p>Sign up:</p>
 		    <label><b>Username</b></label>
 		    <input type="text" placeholder="Enter Username" name="user"/>
 
 		    <label><b>Password</b></label>
 		    <input type="password" placeholder="Enter Password" name="psw"/>
 		</form>
-		<button id="login" onclick="signUp">Sign Up</button>
+		<button id="login">Sign Up</button>
 		<p></p>
 	<script>
+
+	$(document).ready(function(){
+
+	$('#login').click(function(){
 	var username = document.forms["form"]["user"].value;
 	var pass = document.forms["form"]["psw"].value;
-	$(document).ready(function(){
-		$('#login').click(function(){
+	var allKeys;
+	var count = 0;
+
+	var user = {
+		name:username,
+		password:pass
+	}
+	console.log(user.name);
 			$.ajax({
-				type:"POST",
+				type:'POST',
 				url:"Signup.php",
-				success : 			
-			})
-		})
+				dataType: 'json',
+				data: user,
+				success : function (data) {
+					console.log(data);
+				}	
+			});
+
+		});
 	});
 	</script>
 
