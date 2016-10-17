@@ -33,7 +33,6 @@ and store the intormation in a txt file users/passwords/public key/private key--
 		name:username,
 		password:pass
 	}
-	console.log(user.name);
 			$.ajax({
 				type:'POST',
 				url:"Signup.php",
@@ -43,7 +42,7 @@ and store the intormation in a txt file users/passwords/public key/private key--
 					console.log(data);
 				}	
 			});
-
+	window.location.href='login.html';
 		});
 	});
 	</script>

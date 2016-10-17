@@ -1,8 +1,6 @@
 <!--Use ajax call to /checkLogin.php file to check user/password.
 On success, go to viewPosts.php
 On failure, ask the user to correct username/password-->
-
-
 <html>
 
 	<head>
@@ -12,35 +10,39 @@ On failure, ask the user to correct username/password-->
 	<body>
 		<p>Log in:</p>
 		<form id="form" name="form">
-		<p>Sign up:</p>
 		    <label><b>Username</b></label>
 		    <input type="text" placeholder="Enter Username" name="user"/>
 
 		    <label><b>Password</b></label>
 		    <input type="password" placeholder="Enter Password" name="psw"/>
 		</form>
-		<button id="login" onclick="signUp">Sign Up</button>
+		<button id="login">Sign In</button>
 		<p></p>
-
+		<p id="posts" style="display:none">POSTS</p>
 	<script>
-	var username = document.forms["form"]["user"].value;
-	var pass = document.forms["form"]["psw"].value;
-
-	var user = {
-		user:username,
-		password:pass
-	};
-
 	$(document).ready(function(){
 		$('#login').click(function(){
+			var username = document.forms["form"]["user"].value;
+			var pass = document.forms["form"]["psw"].value;
+
+			var user = {
+				name:username,
+				password:pass
+			};
 			$.ajax({
+				type:'POST',
 				url:"checkLogin.php",
+				dataType: 'json',
 				data: user,
 				success : function (data) {
-					alert("user added");
+					console.log(data);
+					if(data.status != false){
+						$('#posts').show();
+					} else {
+						console.log("username/password incorrect");
+					}
 				}	
 			});
-
 		});
 	});
 

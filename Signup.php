@@ -20,8 +20,15 @@ $arr = array(
 	"privatekey" => $private_key,
 );
 
-file_put_contents('users.txt', json_encode($arr),FILE_APPEND);
+$users = file_get_contents('users.txt');
 
+if($users){
+	$users = json_decode($users);
+	array_push($users, $arr);
+	file_put_contents('users.txt',json_encode($users));
+} else {
+	file_put_contents('users.txt',json_encode(array($arr)));
+}
 echo json_encode($arr);
 
 ?>
