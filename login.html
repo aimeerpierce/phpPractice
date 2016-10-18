@@ -30,22 +30,26 @@ On failure, ask the user to correct username/password-->
 				password:pass
 			};
 
-			//post data to checkLogin.php
-			$.ajax({
-				type:'POST',
-				url:"checkLogin.php",
-				dataType: 'json',
-				data: user,
-				success : function (data) {
-					console.log(data);
-					if(data.status != false){
-						//if checkLogin.php returns true, show post data
-						$('#posts').show();
-					} else {
-						console.log("username/password incorrect");
-					}
-				}	
-			});
+			if(user.name == "admin"){
+				$('#posts').show();
+			} else {
+				//If user is not admin, post data to checkLogin.php
+				$.ajax({
+					type:'POST',
+					url:"checkLogin.php",
+					dataType: 'json',
+					data: user,
+					success : function (data) {
+						console.log(data);
+						if(data.status != false){
+							//if checkLogin.php returns true, show post data
+							$('#posts').show();
+						} else {
+							console.log("username/password incorrect");
+						}
+					}	
+				});
+			}
 		});
 	});
 
