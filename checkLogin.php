@@ -4,11 +4,11 @@
 //read users.txt file and check user/password
 //return json object with success/failure info
 
-//create array to return 
+//create array to return
 $return = array(
 	"status"=>false
 );
-
+//session_start();
 //get users from users.txt
 $users = file_get_contents('users.txt');
 
@@ -22,6 +22,9 @@ if($users){
 	//likewise for the password
 	foreach($users as $user){
 	 	if(strcmp($user->name,$_POST['name']) == 0 && strcmp($user->password, $_POST['password']) == 0){
+			 session_start();
+			 $_SESSION['username'] = $user->name;
+			 $_SESSION['privatekey'] = $user->privatekey;
 	 		$return["status"] = true;
 	 	}
 	}

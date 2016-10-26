@@ -3,7 +3,7 @@ Store the username/password and generate a public/private key using phplibsec li
 and store the intormation in a txt file users/passwords/public key/private key-->
 <html>
 	<head>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		<!--script src="phpseclib.txt"></script-->
 
 	</head>
@@ -44,10 +44,9 @@ and store the intormation in a txt file users/passwords/public key/private key--
 				data: user,
 				success : function (data) {
 					console.log(data);
-					window.location.href='login.html';
 				}	
 			});
-	
+	window.location.href='login.html';
 		});
 	});
 	</script>

@@ -5,6 +5,7 @@ On failure, ask the user to correct username/password-->
 
 	<head>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> 
+        <title>Login</title>
 	</head>
 
 	<body>
@@ -17,8 +18,10 @@ On failure, ask the user to correct username/password-->
 		    <input type="password" placeholder="Enter Password" name="psw"/>
 		</form>
 		<button id="login">Sign In</button>
+        <button id="signup">Sign Up</button>
 		<p></p>
 		<p id="posts" style="display:none">POSTS</p>
+        <div id="postsDiv" style="display:none"></div>
 	<script>
 	$(document).ready(function(){
 		$('#login').click(function(){
@@ -30,26 +33,30 @@ On failure, ask the user to correct username/password-->
 				password:pass
 			};
 
-			if(user.name == "admin"){
-				$('#posts').show();
-			} else {
-				//If user is not admin, post data to checkLogin.php
-				$.ajax({
-					type:'POST',
-					url:"checkLogin.php",
-					dataType: 'json',
-					data: user,
-					success : function (data) {
-						console.log(data);
-						if(data.status != false){
-							//if checkLogin.php returns true, show post data
-							$('#posts').show();
-						} else {
-							console.log("username/password incorrect");
-						}
-					}	
-				});
-			}
+			//post data to checkLogin.php
+			$.ajax({
+				type:'POST',
+				url:"checkLogin.php",
+				dataType: 'json',
+				data: user,
+				success : function (data) {
+					console.log(data);
+					if(data.status != false){
+					    //if checkLogin.php returns true, show post data
+					    //$('#posts').show();
+					    //$('#postsDiv').show();
+					    //$.post("viewPosts.php", { name: username }, function (data, status) { $("#postsDiv").html(data); });
+					    //"<a href=\"05_3_endsession.php\">Click here to go to next page</a>";
+					    window.location = 'viewPosts.php';
+					} else {
+						alert("username/password incorrect");
+					}
+				}
+			});
+		});
+
+		$('#signup').click(function () {
+		    window.location = 'Signup.html';
 		});
 	});
 

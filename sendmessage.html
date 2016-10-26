@@ -1,0 +1,54 @@
+<html>
+<head>
+    <title>Send Message</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <style>
+        #message {
+            height: 200px;
+            //width:30px;
+        }
+    </style>
+</head>
+
+<body>
+    <?php
+    session_start();
+    $_SESSION['username'] = 'BOB';
+    ?>
+
+    <p>From </p> <input id="sender" value="<?php echo $_SESSION['username'] ?>" />
+    <p>To   </p> <input id="receiver" />
+    <p>Message:</p>
+    <p><textarea id="message" cols="40" rows="5"></textarea></p>
+    <p> <input id="sendButton" type="button" value="Send" onclick="sendHandler()" /> </p>
+
+    <script>
+        $(document).ready(function(){
+            $('#sendButton').click(function () {
+                var d = new Date();
+                //alert(document.getElementById("sender").value+document.getElementById("receiver").value+ d.getHours() + ":" + d.getMinutes()+document.getElementById("message").value)
+                var send = document.getElementById("sender").value;
+                var receive = document.getElementById("receiver").value;
+                var message = document.getElementById("message").value;
+                var date = d.getHours() + ":" + d.getMinutes;
+
+                var data = {
+                	sender: sende,
+                	receiver: receive,
+                	date: d.getHours() + ":" + d.getMinutes,
+                	body: message
+                }
+
+                $.ajax({
+                    type: 'POST',
+                    url: "sendmessage.php",
+                    dataType: 'json',
+                    data: data
+                });
+            });
+        })
+    </script>
+
+</body>
+
+</html>
